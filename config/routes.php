@@ -1,5 +1,5 @@
 <?php
-
+// config/routes.php
 use App\Controller\HomeController;
 use App\Controller\UserController;
 use App\Controller\PostController;
@@ -10,23 +10,28 @@ function route($controller, $method) {
 
 return [
     '/' => [
-        'GET' => route(HomeController::class, 'indexAction'),
+        'GET' => route(HomeController::class, 'indexPage'),
     ],
+    ////////////////////////////////////////////////////////////////////////////////////////
+    /// users
     '/users' => [
-        'GET' => route(UserController::class, 'indexAction'),
+        'GET' => route(UserController::class, 'indexPage'),
     ],
     '/users/create' => [
+        'GET' => route(UserController::class, 'createPage'),
         'POST' => route(UserController::class, 'createAction')
     ],
     '/users/edit/{userId}' => [
-        'GET' => route(UserController::class, 'editAction')
-    ],
-    '/users/update/{userId}' => [
+        'GET' => route(UserController::class, 'updatePage'),
         'POST' => route(UserController::class, 'updateAction')
     ],
+
     '/users/delete/{userId}' => [
-        'POST' => route(UserController::class, 'deleteAction')
+        'DELETE' => route(UserController::class, 'deleteAction')
     ],
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    /// posts
     '/posts' => [
         'GET' => route(PostController::class, 'indexAction')
     ],
@@ -42,7 +47,13 @@ return [
     '/posts/delete/{postId}' => [
         'POST' => route(PostController::class, 'deleteAction')
     ],
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    /// apis
     '/api/users' => [
         'GET' => route(UserController::class, 'apiIndexAction')
     ]
+
+
 ];

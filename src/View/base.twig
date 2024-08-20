@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title | default('My Application') }}</title>
-    <link href="./css/output.css" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
+
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
 <header class="bg-blue-500 text-white p-4">
@@ -37,5 +38,6 @@
 <footer class="bg-gray-800 text-white text-center p-4">
     <p>&copy; {{ "now"|date("Y") }} My Application. All rights reserved.</p>
 </footer>
+<script language="JavaScript" src="/js/app.js?v=1.0"></script>
 </body>
 </html>

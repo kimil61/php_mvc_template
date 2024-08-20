@@ -1,4 +1,5 @@
 <?php
+// /src/Controller/HomeController.php
 namespace App\Controller;
 
 class HomeController extends BaseController {
@@ -7,7 +8,7 @@ class HomeController extends BaseController {
     }
 
 
-    public function indexAction() {
+    public function indexPage() {
         // Twig를 사용하여 홈 페이지를 렌더링하고 출력합니다.
         echo $this->twig->render('home_index.twig');
     }

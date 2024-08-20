@@ -1,4 +1,5 @@
 <?php
+// /src/Controller/PostController.php
 namespace App\Controller;
 
 use App\Model\Post;

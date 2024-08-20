@@ -1,4 +1,5 @@
 <?php
+// /src/Controller/BaseController.php
 namespace App\Controller;
 
 class BaseController {

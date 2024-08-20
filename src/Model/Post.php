@@ -1,4 +1,5 @@
 <?php
+// src/Model/Post.php
 namespace App\Model;
 
 class Post extends BaseModel {

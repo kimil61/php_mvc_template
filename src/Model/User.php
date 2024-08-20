@@ -1,5 +1,5 @@
 <?php
-// User.php
+// /src/Model/User.php
 namespace App\Model;
 
 class User extends BaseModel {
@@ -29,10 +29,10 @@ class User extends BaseModel {
      * @param string $email
      * @return int The last inserted ID.
      */
-    public function createUser($name, $email) {
-        $queryString = "INSERT INTO users (name, email) VALUES (:name, :email)";
+    public function createUser($username, $email) {
+        $queryString = "INSERT INTO users (username, email) VALUES (:username, :email)";
         $params = [
-            ':name' => $name,
+            ':username' => $username,
             ':email' => $email
         ];
         return $this->executeWriteQuery($queryString, $params);
@@ -45,11 +45,11 @@ class User extends BaseModel {
      * @param string $email
      * @return int The number of affected rows.
      */
-    public function updateUser($id, $name, $email) {
-        $queryString = "UPDATE users SET name = :name, email = :email WHERE id = :id";
+    public function updateUser($id, $username, $email) {
+        $queryString = "UPDATE users SET username = :username, email = :email WHERE id = :id";
         $params = [
             ':id' => $id,
-            ':name' => $name,
+            ':username' => $username,
             ':email' => $email
         ];
         return $this->executeWriteQuery($queryString, $params);
