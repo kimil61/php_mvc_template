@@ -1,0 +1,12 @@
+{
+  "name": "myweb",
+  "version": "1.0.0",
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./src/Assets/css/styles.css -o ./public/css/output.css"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.10"
+  }
+}
