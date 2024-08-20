@@ -57,7 +57,7 @@ server {
     }
 
     location ~ \.php$ {
-        fastcgi_pass   127.0.0.1:9000; # PHP-FPM adress,port
+        fastcgi_pass   127.0.0.1:9000; # PHP-FPM address,port
         fastcgi_index  index.php;
         fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
         include        fastcgi_params;
