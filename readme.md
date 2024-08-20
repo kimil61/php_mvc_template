@@ -1,5 +1,5 @@
 
-# MyWeb PHP Application
+# PHP MVC Minimal Template
 
 This is a minimal PHP application built on an MVC structure, enhanced with routing capabilities. The views are rendered using the Twig templating engine. This setup is designed to be lightweight and efficient, focusing on simplicity and maintainability.
 
