@@ -16,6 +16,7 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self'; style-sr
 $requestUri = htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES, 'UTF-8');
 $method = htmlspecialchars($_SERVER['REQUEST_METHOD'], ENT_QUOTES, 'UTF-8');
 
+//라우터 추가
 $routes = require __DIR__ . '/../config/routes.php';
 
 $callback = null;

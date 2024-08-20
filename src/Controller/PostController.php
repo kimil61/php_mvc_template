@@ -3,14 +3,12 @@ namespace App\Controller;
 
 use App\Model\Post;
 
-class PostController {
+class PostController extends BaseController {
     private $postModel;
-    private $twig;
 
     public function __construct() {
+        parent::__construct();
         $this->postModel = new Post();
-        $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../View');
-        $this->twig = new \Twig\Environment($loader);
     }
 
     public function indexAction() {

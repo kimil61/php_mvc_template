@@ -4,14 +4,12 @@ namespace App\Controller;
 use App\Model\User;
 
 
-class UserController {
+class UserController extends BaseController {
     private $userModel;
-    private $twig;
 
     public function __construct() {
+        parent::__construct();
         $this->userModel = new User();
-        $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../View');
-        $this->twig = new \Twig\Environment($loader);
     }
 
     public function indexAction() {
