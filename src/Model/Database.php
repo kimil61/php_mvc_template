@@ -5,23 +5,22 @@ namespace App\Model;
 use PDO;
 use PDOException;
 use Dotenv\Dotenv;
-
 class Database {
     private static $instance = null;
-    private $pdo;
+    private $readPdo;
+    private $writePdo;
 
     private function __construct() {
-        try {
-            $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
-            $dotenv->load();
-        } catch (Exception $e) {
-            die('Failed to load .env file: ' . $e->getMessage());
-        }
+        $this->connect();
+    }
 
+    private function connect() {
         try {
-            $dsn = 'mysql:host=' . $_ENV['DB_HOST'] . ';port=' . $_ENV['DB_PORT'] . ';dbname=' . $_ENV['DB_NAME'];
-            $this->pdo = new PDO($dsn, $_ENV['DB_USER'], $_ENV['DB_PASS']);
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            Dotenv::createImmutable(__DIR__ . '/../../')->load();
+            $readDsn = 'mysql:host=' . $_ENV['DB_READ_HOST'] . ';port=' . $_ENV['DB_PORT'] . ';dbname=' . $_ENV['DB_NAME'];
+            $writeDsn = 'mysql:host=' . $_ENV['DB_WRITE_HOST'] . ';port=' . $_ENV['DB_PORT'] . ';dbname=' . $_ENV['DB_NAME'];
+            $this->readPdo = new PDO($readDsn, $_ENV['DB_USER'], $_ENV['DB_PASS'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+            $this->writePdo = new PDO($writeDsn, $_ENV['DB_USER'], $_ENV['DB_PASS'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         } catch (PDOException $e) {
             die('Database connection failed: ' . $e->getMessage());
         }
@@ -34,7 +33,11 @@ class Database {
         return self::$instance;
     }
 
-    public function getConnection() {
-        return $this->pdo;
+    public function getReadConnection() {
+        return $this->readPdo;
+    }
+
+    public function getWriteConnection() {
+        return $this->writePdo;
     }
 }

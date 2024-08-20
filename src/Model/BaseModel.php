@@ -14,8 +14,8 @@ class BaseModel {
      */
     public function __construct() {
         // 여기에서 각 데이터베이스 연결을 초기화
-        $this->dbRead = Database::getInstance()->getConnection('read');
-        $this->dbWrite = Database::getInstance()->getConnection('write');
+        $this->dbRead = Database::getInstance()->getReadConnection();
+        $this->dbWrite = Database::getInstance()->getWriteConnection();
     }
 
     /**
