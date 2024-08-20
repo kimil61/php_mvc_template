@@ -6,16 +6,14 @@ use PDO;
 use PDOException;
 
 class BaseModel {
-    protected $dbRead;  // 읽기 전용 데이터베이스 연결
-    protected $dbWrite; // 쓰기 전용 데이터베이스 연결
+    protected $db;
 
     /**
      * Constructor to initialize the database connections.
      */
     public function __construct() {
         // 여기에서 각 데이터베이스 연결을 초기화
-        $this->dbRead = Database::getInstance()->getReadConnection();
-        $this->dbWrite = Database::getInstance()->getWriteConnection();
+        $this->db = Database::getInstance()->getConnection();
     }
 
     /**
@@ -28,7 +26,7 @@ class BaseModel {
      */
     protected function executeReadQuery($queryString, $params = [], $single = false) {
         try {
-            $stmt = $this->dbRead->prepare($queryString);
+            $stmt = $this->db->prepare($queryString);
             $stmt->execute($params);
             return $single ? $stmt->fetch(PDO::FETCH_ASSOC) : $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -45,9 +43,9 @@ class BaseModel {
      */
     protected function executeWriteQuery($queryString, $params = []) {
         try {
-            $stmt = $this->dbWrite->prepare($queryString);
+            $stmt = $this->db->prepare($queryString);
             $stmt->execute($params);
-            return (strpos($queryString, 'INSERT') === 0) ? $this->dbWrite->lastInsertId() : $stmt->rowCount();
+            return (strpos($queryString, 'INSERT') === 0) ? $this->db->lastInsertId() : $stmt->rowCount();
         } catch (PDOException $e) {
             die('Write Query Error: ' . $e->getMessage());
         }
